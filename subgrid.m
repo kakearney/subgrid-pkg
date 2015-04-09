@@ -51,7 +51,11 @@ nrow = length(height);
 ncol = length(width);
 
 newax = cell(length(height), length(width));
-[newax{:}] = deal(zeros(size(ax)));
+if verLessThan('matlab', '8.4.0')
+    [newax{:}] = deal(zeros(size(ax)));
+else
+    [newax{:}] = deal(gobjects(size(ax)));
+end
 
 for iax = 1:numel(ax)
   
